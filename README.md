@@ -5,7 +5,7 @@ This is a small library which implements the [Aho-Corasick string
 search
 algorithm](https://en.wikipedia.org/wiki/Aho%E2%80%93Corasick_algorithm).
 
-It's coded in pure PHP, and self-contained in a single file, `ahocorasick.php`.
+It's coded in pure PHP and self-contained in a single file, `ahocorasick.php`.
 
 It's useful when you want to search for many keywords all at once. It's faster
 than simply calling `strpos` many times, and it's much faster than calling
@@ -13,9 +13,10 @@ than simply calling `strpos` many times, and it's much faster than calling
 
 # Usage
 
-It's designed to be really easy to use. You create the search engine, add your
-keywords, call `finalize()` to finish setup, and then search your text. It'll
-return an array of the keywords found and their position in the search text.
+It's designed to be really easy to use. You create the `ahocorasick` object,
+add your keywords, call `finalize()` to finish setup, and then search your
+text. It'll return an array of the keywords found and their position in the
+search text.
 
 Create, add keywords, and `finalize()`:
 
@@ -75,9 +76,6 @@ See `example.php` for a complete example.
 
 A simple benchmarking program is included which compares various alternatives.
 
-
-Check for correctness, strpos. Regex is broken, but that's the nature of regex.
-
 ```
 $ php benchmark.php
 Loaded 3000 keywords to search on a text of 19377 characters.
@@ -96,8 +94,9 @@ time: 0.054709911346436
 
 ```
 
-You should test it on your data to make sure you really get a speedup. The most
-dramatic speed ups come from where you're searching for many keywords.
+Note: the regex solutions are actually slightly broken. They won't work if you
+have a keyword that is a prefix or suffix of another. But hey, who really uses
+regex when it's not slightly broken?
 
 Also keep in mind that building the search tree (the `add_needle()` and
 `finalize()` calls) takes time. So you'll get the best speed-up if you're
