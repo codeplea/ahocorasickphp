@@ -11,6 +11,9 @@ It's useful when you want to search for many keywords all at once. It's faster
 than simply calling `strpos` many times, and it's much faster than calling
 `preg_match_all` with something like `/keyword1|keyword2|...|keywordn/`.
 
+I origionally wrote this to use with [F5Bot](https://f5bot.com), since it's
+searching for the same set of a few thousand keywords over and over again.
+
 # Usage
 
 It's designed to be really easy to use. You create the `ahocorasick` object,
