@@ -95,7 +95,7 @@ class ahocorasick {
     for ($i = 0; $i < strlen($haystack); ++$i) {
       $c = $haystack[$i];
 
-      while(!isset($nodes[$n][$c]) && $n) {
+      while(!in_array($c, array_keys($nodes[$n]), true) && $n) {
         $n = $nodes[$n][1];
         if ($n === null) die();
       }
